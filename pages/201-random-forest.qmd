@@ -1,0 +1,103 @@
+---
+title: Random Forest
+---
+
+
+```{python}
+#| echo: false
+#| output: false
+
+import seaborn as sns  
+import pandas as pd  
+
+# Load the dataset directly from the seaborn package
+df = sns.load_dataset("penguins")
+
+df_clean = df.dropna()
+df_clean.head()
+
+```
+
+
+We would like to predict a discrete category i.e species and our data has species labels, therefore this is supervised classification problem.
+
+In this example we will use the Random Forest Classifier (there are other classifiers we could also try out as discussed previously.)
+
+
+
+### From Decision Trees to Random Forest
+
+A decision tree splits data into branches based on feature values, creating a flowchart-like structure. They are intuitive — e.g is a dog black or brown — but they overfit easily: a sufficiently deep tree will memorise the training data perfectly (known as overfitting) and perform poorly on new data.
+
+A Random Forest solves this by training many trees in parallel, each on a random subset of data and a random subset of features. The final prediction is the majority vote across all trees. This process is called bootstrap aggregation (bagging).
+
+### Fitting a Random Forest 
+
+Random Forest does not require feature scaling. However, you may have noticed earlier that the sex of the peguins is a categorical variable "male" and "female." In order to use this gender information we will need one-hot encode this information such that we add 2 additonal data fields sex_Female and sex_Male, where 1 in either of these columns will indicate the penguin is that respective sex and 0 the opposite.
+
+Let's define our input features and our target features:
+
+
+```{python}
+#define input features
+X=df_clean[["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g","sex"]]
+#define variable we wish to categorise
+y=df_clean["species"]
+```
+
+Now let's one-hot encode the gender:
+
+```{python}
+#one-hot encode sex category (avoiding ordinality)
+X_encoded  = pd.get_dummies(X, dtype=int)
+X_encoded
+
+```
+
+
+
+Now we want to split our data into test and train datasets as we discussed in (Part 1)[https://bristol-training.github.io/getting-started-ai-1/] - 80% for training and 20% for testing in this example using test_size=0.2. We set random_state=1 so we have reproducible results.
+
+
+```{python}
+from sklearn.model_selection import train_test_split
+# train/test split as before (same random_state ensures identical splits)
+train_X, test_X, train_y, test_y = train_test_split(X_encoded, y, test_size=0.2, random_state=1)
+```
+
+Before we train and implement our Random Forest model, let's take a look at how many of each class we have in the trainining data set:
+
+
+```{python}
+#print(train_y)
+print(train_y.value_counts())
+```
+
+
+As you can see we have different numbers of penguins for each species in the training data and therefore our data is "unbalanced," this needs to be taken into account when training the Random Forest.
+
+For the Random Forest there a number of hyper-parameters that can be altered and tuned to improve performance, the full list can be found here <https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html>. As you can see below we've explicitly set some of these- some are the same as the defaults and some are different. 
+
+Increasing the number of trees used in the random forest "n_estimators" tends to improve performance but also increases the computational costs of training. 
+
+We include the class_weight="balanced" to address the fact we have unbalanced data. 
+
+If a tree is too deep it can cause overfitting so we limit the depth using max_depth.
+
+
+```{python}
+from sklearn.ensemble import RandomForestClassifier
+model= RandomForestClassifier(   
+    n_estimators=300,        # number of trees — more is generally better (diminishing returns)
+    max_depth=2,             # maximum depth per tree — limits overfitting
+    min_samples_leaf=10,     # each leaf must contain at least 10 peguins
+    max_features="sqrt",     # each split considers sqrt(p) features — standard for classification
+    class_weight="balanced", # account for 118/97/51 class imbalance
+    random_state=1,          # reproducible results
+    n_jobs=-1                # use all available CPU cores
+)
+model.fit(train_X, train_y)
+print("Random Forest fitted.")
+print(f"Number of trees: {model.n_estimators}")
+```
+

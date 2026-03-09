@@ -1,0 +1,157 @@
+---
+title: Evaluation
+---
+
+```{python}
+#| echo: false
+#| output: false
+
+import seaborn as sns  
+import pandas as pd  
+import matplotlib.pyplot as plt
+
+# Load the dataset directly from the seaborn package
+df = sns.load_dataset("penguins")
+
+# Create a clean dataframe by dropping rows with any missing values
+df_clean = df.dropna()
+
+species_means = df_clean.groupby("species")[
+    ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"]
+].mean()
+
+
+#define input features
+X=df_clean[["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g","sex"]]
+#define variable we wish to categorise
+y=df_clean["species"]
+
+#one-hot encode sex category (avoiding ordinality)
+X_encoded  = pd.get_dummies(X, dtype=int)
+X_encoded
+
+from sklearn.model_selection import train_test_split
+# train/test split as before (same random_state ensures identical splits)
+train_X, test_X, train_y, test_y = train_test_split(X_encoded, y, test_size=0.2, random_state=1)
+
+
+from sklearn.ensemble import RandomForestClassifier
+model= RandomForestClassifier(   
+    n_estimators=300,        # number of trees — more is generally better (diminishing returns)
+    max_depth=2,             # maximum depth per tree — limits overfitting
+    min_samples_leaf=10,     # each leaf must contain at least 10 peguins
+    max_features="sqrt",     # each split considers sqrt(p) features — standard for classification
+    class_weight="balanced", # account for 118/97/51 class imbalance
+    random_state=1,          # reproducible results
+    n_jobs=-1                # use all available CPU cores
+)
+model.fit(train_X, train_y)
+```
+
+
+
+### Evaluaton Metrics
+
+We covered evaluation metrics yesterday and we import these from sklearn below:
+
+
+```{python}
+from sklearn.metrics import classification_report, balanced_accuracy_score
+```
+
+
+```{python}
+pred_y = model.predict(test_X)
+
+print(classification_report(
+    test_y, pred_y,
+    target_names=["Adelie","Chinstrap","Gentoo"]
+))
+
+```
+
+
+Here, we see four classification matrices of the model: precision, recall, f1-score, and support.
+
+- **Precision**: Measures the accuracy of positive predictions. It is the ratio of true positives to all predicted positives. Here, a precision of 0.81
+ for Chinstrap means 81% of penguins predicted as Chinstrap were actually Chinstrap.
+
+- **Recall**: It is the ratio of true positives to all actual positives. A recall of 
+ 0.86 for Adelie means the model identified 86%
+ of all Adelie penguins.
+
+- **F1-Score**: The harmonic mean of precision and recall provides a balance between these two sometimes competing metrics. An F1-score of 1
+ for Gentoo indicates an perfect balance between identifying positive cases and avoiding false positives.
+
+- **Support**: The actual number of samples in each class within the dataset being evaluated. The support values ( 28
+ Adelie, 17 Chinstrap, 22 Gentoo) provide context for interpreting the other metrics and indicate the relative frequency of each class in the test data.
+
+
+We find that the accuracy of our model when accounting for our unbalanced data using "balanced accuracy" (https://scikit-learn.org/stable/modules/model_evaluation.html#balanced-accuracy-score) - which is essentially a weighted average - results in a value of approx 95%.
+
+
+```{python}
+accuracy = balanced_accuracy_score(test_y, pred_y)
+print("Balance accuracy:", accuracy)
+
+```
+
+
+
+
+### Visualise Model Performance
+
+A confusion matrix is a performance evaluation tool that provides a detailed breakdown of correct and incorrect predictions for each class, allowing you to assess the performance of your classification model. The rows represent the actual classes the outcomes should have been. While the columns represent the predictions we have made. Using this table it is easy to see which predictions are wrong.
+
+
+```{python}
+from sklearn.metrics import confusion_matrix
+
+plt.figure(figsize=(8, 6))
+cm = confusion_matrix(test_y, pred_y)
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
+            xticklabels=['Adelie', 'Chinstrap','Gentoo'],
+            yticklabels=['Adelie', 'Chinstrap','Gentoo'])
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.show()
+```
+
+
+
+
+
+### Feature Importance
+
+Random Forest has inbuilt feature importance scores. Feature importance analysis is used to understand the usefulness or value of each feature in making predictions. The goal is to identify the most influential features that have the greatest impact on the model’s output.
+
+
+```{python}
+# get feature importances
+importances = model.feature_importances_
+importances
+```
+
+
+
+```{python}
+import matplotlib.pyplot as plt
+
+# plot importances
+print(train_X.shape[1])
+plt.bar(train_X.columns, importances)
+plt.xlabel('Feature Index')
+plt.ylabel('Feature Importance')
+plt.xticks(rotation=45, ha='right')
+plt.show()
+```
+
+
+
+For features with high feature importance, it indicates that the feature is very useful in distinguishing between penguin species, and the model relies on it to make predictions.
+
+For features with low feature importance, it suggests that the feature has a minimal impact on the model’s predictions. This feature may not contribute significantly to distinguishing the target variable (which species the penguin is.)
+
+For more details as to why feature importance is important and useful as well as other methods to establish feature importance see https://bristol-training.github.io/data-analysis-python-2/extra/feature-importance-analysis.html
+

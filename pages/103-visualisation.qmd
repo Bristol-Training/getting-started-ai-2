@@ -1,0 +1,82 @@
+---
+title: Visualisation
+---
+
+
+```{python}
+#| label: setup
+#| echo: false
+#| output: false
+#| warning: false
+
+import pandas as pd  # The "Excel" of Python
+import seaborn as sns  # For statistical plotting
+import matplotlib.pyplot as plt  # The engine behind the plots
+
+# Force all pandas tables to display 2 decimal places
+pd.options.display.float_format = "{:,.2f}".format
+
+# Set a nice theme for our charts
+sns.set_theme(style="whitegrid")
+
+# Load the dataset directly from the seaborn package
+df = sns.load_dataset("penguins")
+
+
+# Create a clean dataframe by dropping rows with any missing values
+df_clean = df.dropna()
+
+# Calculate how many rows were dropped
+rows_removed = len(df) - len(df_clean)
+
+
+species_means = df_clean.groupby("species")[
+    ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"]
+].mean()
+
+```
+
+Now that we have a sense of the numbers, let's visualise the relationships.
+
+### Pairplot (The "Big Picture")
+
+A Pairplot allows us to see the relationship between every variable at once. This helps us spot clusters and potential correlations.
+
+
+```{python}
+#| label: fig-pairplot
+#| fig-cap: Pairplot of Penguin Dimensions
+#| fig-align: center
+
+# hue="species" colors the dots so we can spot clusters
+# corner=True removes the duplicate charts to keep it clean
+sns.pairplot(df_clean, hue="species", corner=True, height=1.5)
+plt.show()
+```
+
+### Correlation Heatmap
+Finally, let's quantify how strongly these variables are related.
+
+- 1.0 = Perfect positive correlation (move together)
+
+- -1.0 = Perfect negative correlation (move opposite)
+
+- 0 = No relationship
+
+This matrix is crucial for deciding which variables to include in a regression model.
+
+
+```{python}
+#| label: fig-correlation
+#| fig-cap: Correlation Heatmap of Numeric Variables
+#| fig-align: center
+
+# Calculate the correlation matrix
+corr_matrix = df_clean.corr(numeric_only=True)
+
+# Plot the heatmap
+plt.figure(figsize=(6, 5))
+sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", vmin=-1, vmax=1, fmt=".2f")
+plt.title("Correlation Matrix")
+plt.show()
+```

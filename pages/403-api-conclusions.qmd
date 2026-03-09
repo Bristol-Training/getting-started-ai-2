@@ -1,0 +1,20 @@
+---
+title: "Advantages and disadvantages"
+---
+
+
+The advantages of LLMs include:
+
+* They can perform a wide variety of tasks, including with other types of data (such as images).
+* We can specify tasks using natural language, meaning the model doesn't need to be specifically trained for the task we want.
+* LLMs are generally well-tolerant to spelling mistakes.
+
+However, the disadvantages of LLMs include:
+
+* The answers are not always deterministic. A simpler neural network or other AI model, after it is trained, will give you the same result if you give it the same data. An LLM will usually give you different answers each time. You may need to spend time refining the system prompt you are using to get the best answers.
+* There may be a high financial cost to use an LLM, either to pay for API use, or (if we are running models locally) to buy specialist equipment.
+* There are environmental costs associated with the training and use of LLMs.
+* There are ethical issues associated with LLMs, including the large-scale harvesting of data from the internet required for their training, and that many perform more poorly when not using English.
+* The (previously mentioned) data privacy considerations if using LLMs in the cloud, and security considerations around prompt injection.
+
+You should think about whether a simpler model could be used to perform the same task to a similar degree of accuracy.

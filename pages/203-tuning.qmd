@@ -1,0 +1,139 @@
+---
+title: Tuning
+---
+
+
+```{python}
+#| echo: false
+#| output: false
+
+import seaborn as sns  
+import pandas as pd  
+import matplotlib.pyplot as plt
+
+# Load the dataset directly from the seaborn package
+df = sns.load_dataset("penguins")
+
+# Create a clean dataframe by dropping rows with any missing values
+df_clean = df.dropna()
+
+species_means = df_clean.groupby("species")[
+    ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"]
+].mean()
+
+
+#define input features
+X=df_clean[["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g","sex"]]
+#define variable we wish to categorise
+y=df_clean["species"]
+
+#one-hot encode sex category (avoiding ordinality)
+X_encoded  = pd.get_dummies(X, dtype=int)
+X_encoded
+
+from sklearn.model_selection import train_test_split
+# train/test split as before (same random_state ensures identical splits)
+train_X, test_X, train_y, test_y = train_test_split(X_encoded, y, test_size=0.2, random_state=1)
+
+
+from sklearn.ensemble import RandomForestClassifier
+model= RandomForestClassifier(   
+    n_estimators=300,        # number of trees — more is generally better (diminishing returns)
+    max_depth=2,             # maximum depth per tree — limits overfitting
+    min_samples_leaf=10,     # each leaf must contain at least 10 peguins
+    max_features="sqrt",     # each split considers sqrt(p) features — standard for classification
+    class_weight="balanced", # account for 118/97/51 class imbalance
+    random_state=1,          # reproducible results
+    n_jobs=-1                # use all available CPU cores
+)
+model.fit(train_X, train_y)
+
+
+from sklearn.metrics import classification_report, balanced_accuracy_score
+
+pred_y = model.predict(test_X)
+
+
+importances = model.feature_importances_
+importances
+
+import matplotlib.pyplot as plt
+```
+
+
+### Cross Validation
+
+Cross-validation helps us estimate how well our model will generalise to new data by the following measures:
+
+- Dividing the training data into multiple subsets (folds).
+
+- Training and testing/validating the model on different combinations of these folds.
+
+- Averaging the results to get a more reliable performance estimate.
+
+Here we have a 5-fold cross validation (cv=5 below) and we see 5 different scores for each fold with the average accuracy of around 96%.
+
+
+```{python}
+from sklearn.model_selection import cross_val_score
+cv_scores = cross_val_score(RandomForestClassifier(
+    n_estimators=300,        # number of trees — more is generally better (diminishing returns)
+    max_depth=2,             # maximum depth per tree — limits overfitting
+    min_samples_leaf=10,     # each leaf must contain at least 10 peguins
+    max_features="sqrt",     # each split considers sqrt(p) features — standard for classification
+    class_weight="balanced", # account for 118/97/51 class imbalance
+    random_state=1,          # reproducible results
+    n_jobs=-1 
+    ), 
+                           train_X, train_y, cv=5, scoring='accuracy')
+print(f"Cross-validation scores: {cv_scores}")
+print(f"Mean CV accuracy: {cv_scores.mean():.4f} ± {cv_scores.std():.4f}")
+```
+
+
+
+This highlights the limitations of our small dataset (300 samples for training and 33 for testing) generalising to new data given the varying results between 92% and 100% for accuracy across the 5 subsets.
+
+
+
+### Hyperparameter Tuning
+
+
+We don't have much time to cover tuning hyperparameters to improve peformance but one way of doing this is undertaking a GridSearchCV as explained here <https://bristol-training.github.io/data-analysis-python-2/pages/500-hyperparameters.html>.
+
+The key hyperparameters for Random Forest are:
+    
+- `n_estimators`: More trees improves performance but slows training time.
+
+- `max_depth`: The deeper it is the more likely to overfit.
+
+- `min_samples_leaf`: The higher it is the smoother and more regularised the results are likely to be. Lower values can lead to overfitting.
+
+We can use a grid search to establish the optimal hyper-parameters for the Random Forest:
+
+
+```{python}
+from sklearn.model_selection import GridSearchCV
+
+param_grid = {
+    "max_depth":       [5, 8, 12],
+    "min_samples_leaf": [10, 20, 40],
+    "n_estimators":    [200]   # fix for speed; increase in real work
+}
+
+grid_search = GridSearchCV(
+    RandomForestClassifier(
+        class_weight="balanced", random_state=1, n_jobs=-1
+    ),
+    param_grid=param_grid,
+    cv=5,              # 5-fold cross-validation
+    verbose=1,
+    n_jobs=-1
+)
+
+grid_search.fit(train_X, train_y)
+
+print(f"Best parameters: {grid_search.best_params_}")
+print(f"Best GridSearchCV score: {grid_search.best_score_:.3f}")
+```
+

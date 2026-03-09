@@ -1,0 +1,34 @@
+---
+title: "Introduction"
+---
+
+Welcome to *Getting Started with AI (part 2)* — a practical, hands-on continuation of our introductory AI course. In this session we move beyond the core ideas covered in part 1 and focus on **applying** machine-learning and AI techniques. We will work through several widely used methods — from **exploratory data analysis (EDA)** to **random forests** and **neural networks** — and conclude by showing how modern LLMs can be integrated into applications and analysis pipelines.
+
+No prior programming experience is required. By the end of the session, you will have gained hands-on intuition for *how* these tools behave in practice and the practical steps involved in building and using AI systems.
+
+### Learning Objectives
+
+By the end of this course, you will be able to:
+
+- Perform basic exploratory data analysis (EDA) to understand and prepare a dataset  
+- Train and interpret classical machine‑learning models such as random forests  
+- Build and evaluate simple neural networks  
+- Understand practical considerations in model training, evaluation, and workflow design  
+- Use large language models via an API and integrate them into simple applications or analysis tasks  
+
+### About this Course
+
+Each part combines short explanations with interactive visualisations and hands-on examples so you can immediately see the concepts in action. Parts 2 and 3 include guided coding exercises; no setup is required beyond a web browser. The materials are self-contained and designed to be revisited at your own pace after the session.
+
+These course materials have been designed and developed by the **Jean Golding Institute, University of Bristol**:
+Pau Erola (lead), Rita Rasteiro, Josh Tyler, Ben Westhenry, Richard Lane, James Thomas.
+
+
+We used AI assistance in line with institutional guidance:
+
+- **Microsoft Copilot (GPT-5)** – Writing assistance
+- **Claude (Sonnet 4)** – Writing assistance and example code generation
+- **Google Gemini (Gemini 3)** – Image generation 
+
+For queries related to this course please contact [jgi-training@bristol.ac.uk](mailto:jgi-training@bristol.ac.uk).
+

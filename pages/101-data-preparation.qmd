@@ -1,0 +1,65 @@
+---
+title: Data Preparation
+---
+
+### Environment Setup & Loading Data
+
+First, we need to load our toolkit. We will use **Pandas** for data manipulation and **Seaborn/Matplotlib** for visualisation.
+
+
+```{python}
+#| label: setup
+#| echo: true
+#| warning: false
+
+import pandas as pd  # The "Excel" of Python
+import seaborn as sns  # For statistical plotting
+import matplotlib.pyplot as plt  # The engine behind the plots
+
+# Force all pandas tables to display 2 decimal places
+pd.options.display.float_format = "{:,.2f}".format
+
+# Set a nice theme for our charts
+sns.set_theme(style="whitegrid")
+
+# Load the dataset directly from the seaborn package
+df = sns.load_dataset("penguins")
+
+# Show the first 5 rows to verify it loaded correctly
+display(df.head())
+```
+
+### Data Cleaning
+Real-world data is rarely perfect. Before we can analyse the penguins, we need to check for missing values (NaNs).
+
+
+```{python}
+#| label: tbl-missing-data
+#| tbl-cap: Summary of Missing Values
+
+# 1. Create a clean summary of missing values
+missing_summary = df.isnull().sum().to_frame(name="Missing Values")
+display(missing_summary)
+```
+
+Since we have enough data, we will drop the rows with missing values to ensure our later analysis is accurate.
+
+
+```{python}
+#| label: data-cleaning
+#| echo: true
+
+# Create a clean dataframe by dropping rows with any missing values
+df_clean = df.dropna()
+
+# Calculate how many rows were dropped
+rows_removed = len(df) - len(df_clean)
+
+print("-" * 30)
+print(f"CLEANING REPORT")
+print(f"• Original records: {len(df)}")
+print(f"• Records kept:     {len(df_clean)}")
+print(f"• Records removed:  {rows_removed}")
+print("-" * 30)
+```
+

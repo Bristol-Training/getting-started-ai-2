@@ -1,0 +1,65 @@
+---
+title: Descriptive Statistics
+---
+
+
+```{python}
+#| label: setup
+#| echo: false
+#| output: false
+#| warning: false
+
+import pandas as pd  # The "Excel" of Python
+import seaborn as sns  # For statistical plotting
+import matplotlib.pyplot as plt  # The engine behind the plots
+
+# Force all pandas tables to display 2 decimal places
+pd.options.display.float_format = "{:,.2f}".format
+
+# Set a nice theme for our charts
+sns.set_theme(style="whitegrid")
+
+# Load the dataset directly from the seaborn package
+df = sns.load_dataset("penguins")
+
+
+# Create a clean dataframe by dropping rows with any missing values
+df_clean = df.dropna()
+
+# Calculate how many rows were dropped
+rows_removed = len(df) - len(df_clean)
+
+```
+
+
+Before visualising, let's look at the "Bird's Eye View" of our data. The describe() function gives us the range, mean, and standard deviation for all numeric columns.
+
+
+```{python}
+#| label: tbl-stats
+#| tbl-cap: Descriptive Statistics for Numeric Variables
+
+# Get a statistical summary
+stats = df_clean.describe()
+display(stats)
+```
+
+### Grouping by Species
+
+The statistics above are for all penguins mixed together. Let's group them by species to see if there are distinct size differences.
+
+> Question: Which species has the highest average body mass?
+
+
+```{python}
+#| label: tbl-species-group
+#| tbl-cap: Average Measurements by Species
+
+# Corrected: Group by species, select columns, THEN calculate mean
+species_means = df_clean.groupby("species")[
+    ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"]
+].mean()
+
+display(species_means)
+```
+

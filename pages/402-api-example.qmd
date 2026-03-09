@@ -1,0 +1,188 @@
+---
+title: "A realistic example"
+---
+
+
+
+So far, we have seen some toy examples telling jokes. In reality, LLMs are used to perform a wide variety of tasks.
+
+In this example, we have some restaurant reviews that we want to summarise, and then determine if they are positive or negative.
+
+Review number | Input text
+------------- | ----------
+1             | The restaurant was very hot and the service was slow.
+2             | My food was cold.
+3             | The service was punctual and we enjoyed the meal.
+4             | wos gReat luvved it
+5             | No input given
+
+
+```python
+input_data = [
+    "The restaurant was very hot and the service was slow.",
+    "My food was cold.",
+    "The service was punctual and we enjoyed the meal.",
+    "woz gReat luvved it",
+    "No input given",
+]
+```
+
+We want the model to output the summaries and positive/negative indicator, so we use an appropriate prompt:
+
+
+```python
+system_prompt = "You are a robot summariser of restaurant reviews. Create a short summary of each review, and decide whether it is positive or negative."
+```
+
+and define the output format:
+
+Output variable | Possible values
+--------------- | ---------------
+`summary`       | Text
+`is_positive`   | True/False
+
+
+```python
+from pydantic import BaseModel, Field
+
+
+class OutputFormat(BaseModel):
+    summary: str = Field(description="4-5 word summary")
+    is_positive: bool | None = Field(description="Use None if unknown")
+```
+
+We can then run the model on the input data.
+
+We create one set of messages for each row in the input data, repeating the system prompt each time:
+
+
+```python
+messages = []
+
+for row in input_data:
+    messages.append(
+        [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": row},
+        ]
+    )
+```
+
+We can then pass all the messages to the LLM and wait.
+
+
+```python
+from litellm import batch_completion
+
+responses = batch_completion(
+    model="github/gpt-4o-mini",
+    messages=messages,
+    response_format=OutputFormat,
+)
+
+```
+
+
+```python
+import pandas as pd
+
+
+def convert_response_to_dict(response):
+    return OutputFormat.model_validate_json(get_content_from_model_response(response)).model_dump()
+
+
+output_data = pd.DataFrame(convert_response_to_dict(response) for response in responses)
+output_data
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>summary</th>
+      <th>is_positive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Unpleasant atmosphere and service</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Food served cold</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Punctual service, enjoyable meal</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Great experience, loved it</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>No reviews provided</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### Image data
+
+Some LLMs can also read and output other types of data, such as images or audio.
+
+Here we use the LLM to identify the following image of a cat and provide a caption.
+
+![An image of a cat (From Wikimedia Commons. Author: Hisashi from Japan, Caspian blue. CC BY-SA 2.0)](../assets/animal.jpg)
+
+
+```python
+from base64 import b64encode
+
+# We need to send the model either a URL pointing to an image on the web, or in
+# this case, a 'base-64 encoded' version of the image
+image_data = "data:image/jpeg;base64," + b64encode(open("animal.jpg", "rb").read()).decode()
+
+response = completion(
+    model="github/gpt-4o-mini",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "What's in this image?"},
+                {"type": "image_url", "image_url": {"url": image_data}},
+            ],
+        }
+    ],
+)
+
+print(get_content_from_model_response(response))
+```
+
+    The image shows a cat with orange and white fur sitting on a surface that appears to be made of leaves or small bark pieces. The cat has a focused expression and is looking in front of it.
+

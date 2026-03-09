@@ -1,0 +1,78 @@
+project:
+  type: website
+
+website:
+  title: "Getting Started with AI (part 2)"
+  page-navigation: true
+
+  sidebar: 
+    title: "Getting Started with AI (part 2)"
+    logo: "assets/UoB_RGB_24.png"
+    align: center
+    logo-alt: "University of Bristol logo"
+    style: "docked"
+    border: true
+    contents: 
+      - index.qmd
+
+      - text: "---"
+      - "pages/001-palmer-penguins.qmd"
+      - text: "---"
+      - "pages/002-setup.qmd"
+
+      - text: "---"
+      - section: "**Data Exploration**"
+        contents:
+          - "pages/101-data-preparation.qmd"
+          - "pages/102-statistics.qmd"
+          - "pages/103-visualisation.qmd"
+
+      - text: "---"
+      - section: "**Random Forest**"
+        contents:
+          - "pages/201-random-forest.qmd"
+          - "pages/202-evaluation.qmd"
+          - "pages/203-tuning.qmd"
+
+      - text: "---"
+      - section: "**Neural Networks**"
+        contents:
+          - "pages/301-neural-networks.qmd"
+          - "pages/302-training.qmd"
+          - "pages/303-evaluation.qmd"
+ 
+      - text: "---"
+      - section: "**Large Language Models**"
+        contents:
+          - "pages/401-api-llm.qmd"
+          - "pages/402-api-example.qmd"
+          - "pages/403-api-conclusions.qmd"
+
+      - text: "---"
+      - "pages/901-summary.qmd"
+
+
+
+  page-footer:
+    left: "[Jean Golding Institute](https://www.bristol.ac.uk/golding/) © [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/)"
+  repo-url: https://github.com/Bristol-Training/getting-started-ai-2
+  #repo-actions: [edit, issue]
+
+format:
+  html:
+    #theme: [cosmo, styles.scss]
+    theme: [cosmo, style.scss]
+    toc: false
+    #shift-heading-level-by: 1
+    #filters:
+    #  - include-code-files
+    #highlight-style: github
+
+    # code-line-numbers: true
+
+
+execute:
+  freeze: auto
+
+
+
