@@ -396,7 +396,7 @@ Since our Iris dataset has 4 features, we can't visualise all dimensions at once
 
 
 ```python
-plotting.plot_decision_boundaries(
+plot_decision_boundaries(
     model,
     X,
     y,
