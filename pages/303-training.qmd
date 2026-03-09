@@ -120,6 +120,8 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 
 The learning rate `lr` controls how big the step is - too small and training takes forever; too big and you might overshoot the minimum.
 
+![Gradient descent illustration](../assets/gradeint.png)
+
 In the training loop we call:
 
 ```python
