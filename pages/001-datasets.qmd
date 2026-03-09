@@ -71,3 +71,54 @@ penguins.head()
 ```
 
 
+### Using your own dataset
+
+With `pandas`, you can easily load your own datasets from various formats, such as CSV, Excel, or SQL databases.
+
+For example, we can load the CSV file [`nhs_readmission.csv`](https://raw.githubusercontent.com/Bristol-Training/nhs-data-science/refs/heads/main/data/nhs_readmission.csv). This dataset is entirely synthetic, generated purely as a teaching example.
+
+- Simulated distributions based on typical NHS inpatient population parameters (e.g. age ~Normal(62, 16), length of stay ~Exponential(4.5), HbA1c ~Normal(60, 18))
+- Clinically plausible missingness patterns (HbA1c missing in ~16% of patients, eGFR in ~9%)
+- A logistic outcome model where readmission probability depends on age, Charlson index, length of stay, prior ED attendances, eGFR, and IMD decile
+
+::: {.callout-note collapse="true"}
+### Column descriptions
+
+| Column | Description |
+|--------|-------------|
+| `patient_id` | Anonymous patient identifier |
+| `age` | Age in years at admission |
+| `sex` | M / F |
+| `imd_decile` | Index of Multiple Deprivation (1 = most deprived, 10 = least) |
+| `primary_diagnosis` | ICD-10 code for primary diagnosis |
+| `charlson_index` | Charlson Comorbidity Index (0–37) |
+| `hba1c` | Most recent HbA1c (mmol/mol) — missing if not tested |
+| `egfr` | Most recent eGFR (mL/min/1.73m²) — missing if not tested |
+| `bmi` | Body Mass Index (kg/m²) |
+| `los_days` | Length of stay in days |
+| `ed_prior_year` | ED attendances in previous 12 months |
+| `discharge_ward` | Ward the patient was discharged from |
+| `readmitted_30d` | Readmitted within 30 days: Yes / No |
+
+:::
+
+
+```{python}
+import pandas as pd
+
+url = "https://raw.githubusercontent.com/Bristol-Training/nhs-data-science/refs/heads/main/data/nhs_readmission.csv"
+
+nhs_data = pd.read_csv(
+    url,
+    skiprows=3, # skip header rows with metadata
+    index_col="patient_id", # this column is an identifier each row
+    na_values=[".", "N/A", "NULL", "UNKNOWN"],  # recode common placeholders as NaN
+)
+
+print("Missing values per column:")
+print(nhs_data.isnull().sum())
+
+nhs_data = nhs_data.dropna()
+nhs_data.head()
+```
+
