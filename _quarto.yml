@@ -16,7 +16,7 @@ website:
       - index.qmd
 
       - text: "---"
-      - "pages/001-palmer-penguins.qmd"
+      - "pages/001-datasets.qmd"
       - text: "---"
       - "pages/002-setup.qmd"
 
@@ -39,7 +39,8 @@ website:
         contents:
           - "pages/301-neural-networks.qmd"
           - "pages/302-training.qmd"
-          - "pages/303-evaluation.qmd"
+          - "pages/303-fitting.qmd"
+          - "pages/304-evaluation.qmd"
  
       - text: "---"
       - section: "**Large Language Models**"

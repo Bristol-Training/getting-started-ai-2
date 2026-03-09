@@ -1,0 +1,73 @@
+---
+title: "Datasets"
+---
+
+### Iris Dataset
+
+![](../assets/iris.png){width=70%}
+
+The Iris dataset, introduced by British statistician and biologist Ronald A. Fisher in 1936, is one of the most iconic datasets in the history of machine learning and statistics. It contains measurements of 150 iris flowers, evenly split across three species — Iris setosa, Iris versicolor, and Iris virginica — with each flower described by four features: sepal length, sepal width, petal length, and petal width, all measured in centimetres. Its appeal lies in its simplicity and structure: one class (setosa) is linearly separable from the other two, while the remaining pair overlaps slightly, making it an ideal sandbox for exploring both simple and more nuanced classification algorithms. 
+
+We can load the dataset directly from the Python `pandas` library.
+
+```{python}
+#| fig-cap: "The first few rows of the Iris dataset."
+
+import pandas as pd
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+
+iris = load_iris(as_frame=True)
+df = iris.frame
+df["species"] = df["target"].map({0: "setosa", 1: "versicolor", 2: "virginica"})
+df = df.drop(columns=["target"])
+
+df.head(6)
+```
+
+
+### Palmer Penguins Dataset
+
+The **Palmer Penguins** dataset was collected by Dr. Kristen Gorman at Palmer Station, Antarctica.
+
+
+> Gorman KB, Williams TD, Fraser WR (2014) *Ecological Sexual Dimorphism and Environmental Variability within a Community of Antarctic Penguins (Genus Pygoscelis)*. PLoS ONE 9(3): e90081. <doi:10.1371/journal.pone.0090081>
+
+
+It contains measurements for 344 penguins belonging to three species:
+
+- **Adélie** (*Pygoscelis adeliae*)
+- **Chinstrap** (*Pygoscelis antarcticus*)
+- **Gentoo** (*Pygoscelis papua*)
+
+![Artwork by @allison_horst](../assets/penguins.png){width=60%}
+
+
+The features available are:
+
+| Feature | Type | Description |
+|---|---|---|
+| `bill_length_mm` | Numeric | Length of the bill in millimetres |
+| `bill_depth_mm` | Numeric | Depth (height) of the bill in millimetres |
+| `flipper_length_mm` | Numeric | Flipper length in millimetres |
+| `body_mass_g` | Numeric | Body mass in grams |
+| `island` | Categorical | Biscoe, Dream, or Torgersen |
+| `sex` | Categorical | Male or Female |
+
+<br>
+
+We can load the dataset directly from the Python ``seaborn`` library.
+
+
+```{python}
+# Load libraries
+import seaborn as sns
+
+# Load the dataset
+penguins = sns.load_dataset("penguins")
+
+# Show the first few rows
+penguins.head()
+```
+
+
