@@ -374,6 +374,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Once we have the gradients from backpropagation, we need to actually update the weights. This is done by an <strong>optimizer</strong>. The simplest approach is <strong>gradient descent</strong>: move each parameter a small step in the direction that reduces the loss.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The learning rate <code>lr</code> controls how big the step is - too small and training takes forever; too big and you might overshoot the minimum.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/gradeint.png" class="img-fluid figure-img"></p>
+<figcaption>Gradient descent illustration</figcaption>
+</figure>
+</div>
 <p>In the training loop we call:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>optimizer.zero_grad()  <span class="co"># Clear gradients from the previous step</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>loss.backward()        <span class="co"># Compute new gradients</span></span>
@@ -382,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a-real-example" class="level3">
 <h3 class="anchored" data-anchor-id="a-real-example">A Real Example</h3>
-<div id="45ca3c95" class="cell" data-execution_count="2">
+<div id="8df3a60f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the Iris dataset from sklearn</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -445,18 +451,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Features: 4, Classes: 3
 
 Training...
-Epoch [20/250], Loss: 0.7853
-Epoch [40/250], Loss: 0.4201
-Epoch [60/250], Loss: 0.2134
-Epoch [80/250], Loss: 0.0875
-Epoch [100/250], Loss: 0.0613
-Epoch [120/250], Loss: 0.0553
-Epoch [140/250], Loss: 0.0526
-Epoch [160/250], Loss: 0.0507
-Epoch [180/250], Loss: 0.0491
-Epoch [200/250], Loss: 0.0477
-Epoch [220/250], Loss: 0.0465
-Epoch [240/250], Loss: 0.0455</code></pre>
+Epoch [20/250], Loss: 1.0154
+Epoch [40/250], Loss: 0.6888
+Epoch [60/250], Loss: 0.3630
+Epoch [80/250], Loss: 0.1325
+Epoch [100/250], Loss: 0.0712
+Epoch [120/250], Loss: 0.0602
+Epoch [140/250], Loss: 0.0563
+Epoch [160/250], Loss: 0.0539
+Epoch [180/250], Loss: 0.0520
+Epoch [200/250], Loss: 0.0505
+Epoch [220/250], Loss: 0.0492
+Epoch [240/250], Loss: 0.0480</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -472,7 +478,7 @@ Epoch [240/250], Loss: 0.0455</code></pre>
 <section id="monitoring-training" class="level3">
 <h3 class="anchored" data-anchor-id="monitoring-training">Monitoring training</h3>
 <p>During training, we expect our loss to decrease as the model makes better and better predictions. You might have noticed above that the neural network “sees” the entire dataset multiple times - each of these is known as an “epoch”. We can plot the loss against epoch number to see how the model improves:</p>
-<div id="5711a2b3" class="cell" data-execution_count="3">
+<div id="c49f595a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the training loss</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
@@ -495,7 +501,7 @@ Epoch [240/250], Loss: 0.0455</code></pre>
 <p>It is good that our neural network has learned from the training data, but this is no guarantee that it would work on real data.</p>
 <p>To check it works we will evaluate it on our holdout testing subset of the data. This is data for which we know the ground truth, but that the model hasn’t been trained on. We will plot a “confusion matrix” that compares the neural network’s predictions to the real labels.</p>
 <p>Note that this still isn’t a guarantee that the model will work when given some real data - e.g.&nbsp;the real data might have a different distribution, which is also something you might need to monitor!</p>
-<div id="39749444" class="cell" data-execution_count="4">
+<div id="2f623dfb" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate on test set</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()  <span class="co"># Set model to evaluation mode</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():  <span class="co"># Disable gradient computation for inference</span></span>
