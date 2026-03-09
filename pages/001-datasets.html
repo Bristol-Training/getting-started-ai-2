@@ -342,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="../assets/iris.png" class="img-fluid" style="width:70.0%"></p>
 <p>The Iris dataset, introduced by British statistician and biologist Ronald A. Fisher in 1936, is one of the most iconic datasets in the history of machine learning and statistics. It contains measurements of 150 iris flowers, evenly split across three species — Iris setosa, Iris versicolor, and Iris virginica — with each flower described by four features: sepal length, sepal width, petal length, and petal width, all measured in centimetres. Its appeal lies in its simplicity and structure: one class (setosa) is linearly separable from the other two, while the remaining pair overlaps slightly, making it an ideal sandbox for exploring both simple and more nuanced classification algorithms.</p>
 <p>We can load the dataset directly from the Python <code>pandas</code> library.</p>
-<div id="4482af37" class="cell" data-execution_count="1">
+<div id="a462d40f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -353,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">"target"</span>])</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -492,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p><br></p>
 <p>We can load the dataset directly from the Python <code>seaborn</code> library.</p>
-<div id="6036a91a" class="cell" data-execution_count="2">
+<div id="40b787c9" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -501,7 +501,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first few rows</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -568,6 +568,253 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>193.0</td>
 <td>3450.0</td>
 <td>Female</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="using-your-own-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="using-your-own-dataset">Using your own dataset</h3>
+<p>With <code>pandas</code>, you can easily load your own datasets from various formats, such as CSV, Excel, or SQL databases.</p>
+<p>For example, we can load the CSV file <a href="https://raw.githubusercontent.com/Bristol-Training/nhs-data-science/refs/heads/main/data/nhs_readmission.csv"><code>nhs_readmission.csv</code></a>. This dataset is entirely synthetic, generated purely as a teaching example.</p>
+<ul>
+<li>Simulated distributions based on typical NHS inpatient population parameters (e.g.&nbsp;age ~Normal(62, 16), length of stay ~Exponential(4.5), HbA1c ~Normal(60, 18))</li>
+<li>Clinically plausible missingness patterns (HbA1c missing in ~16% of patients, eGFR in ~9%)</li>
+<li>A logistic outcome model where readmission probability depends on age, Charlson index, length of stay, prior ED attendances, eGFR, and IMD decile</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Column descriptions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>patient_id</code></td>
+<td>Anonymous patient identifier</td>
+</tr>
+<tr class="even">
+<td><code>age</code></td>
+<td>Age in years at admission</td>
+</tr>
+<tr class="odd">
+<td><code>sex</code></td>
+<td>M / F</td>
+</tr>
+<tr class="even">
+<td><code>imd_decile</code></td>
+<td>Index of Multiple Deprivation (1 = most deprived, 10 = least)</td>
+</tr>
+<tr class="odd">
+<td><code>primary_diagnosis</code></td>
+<td>ICD-10 code for primary diagnosis</td>
+</tr>
+<tr class="even">
+<td><code>charlson_index</code></td>
+<td>Charlson Comorbidity Index (0–37)</td>
+</tr>
+<tr class="odd">
+<td><code>hba1c</code></td>
+<td>Most recent HbA1c (mmol/mol) — missing if not tested</td>
+</tr>
+<tr class="even">
+<td><code>egfr</code></td>
+<td>Most recent eGFR (mL/min/1.73m²) — missing if not tested</td>
+</tr>
+<tr class="odd">
+<td><code>bmi</code></td>
+<td>Body Mass Index (kg/m²)</td>
+</tr>
+<tr class="even">
+<td><code>los_days</code></td>
+<td>Length of stay in days</td>
+</tr>
+<tr class="odd">
+<td><code>ed_prior_year</code></td>
+<td>ED attendances in previous 12 months</td>
+</tr>
+<tr class="even">
+<td><code>discharge_ward</code></td>
+<td>Ward the patient was discharged from</td>
+</tr>
+<tr class="odd">
+<td><code>readmitted_30d</code></td>
+<td>Readmitted within 30 days: Yes / No</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="84dd938b" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/Bristol-Training/nhs-data-science/refs/heads/main/data/nhs_readmission.csv"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>nhs_data <span class="op">=</span> pd.read_csv(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    url,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    skiprows<span class="op">=</span><span class="dv">3</span>, <span class="co"># skip header rows with metadata</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    index_col<span class="op">=</span><span class="st">"patient_id"</span>, <span class="co"># this column is an identifier each row</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    na_values<span class="op">=</span>[<span class="st">"."</span>, <span class="st">"N/A"</span>, <span class="st">"NULL"</span>, <span class="st">"UNKNOWN"</span>],  <span class="co"># recode common placeholders as NaN</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Missing values per column:"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nhs_data.isnull().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Missing values per column:
+age                    0
+sex                    0
+imd_decile             0
+primary_diagnosis      0
+charlson_index         0
+hba1c                811
+egfr                 445
+bmi                   65
+los_days               0
+ed_prior_year         25
+discharge_ward         0
+readmitted_30d         0
+dtype: int64</code></pre>
+</div>
+</div>
+<div id="68805c86" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># delete rows with missing values</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>nhs_data <span class="op">=</span> nhs_data.dropna()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print first rows </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>nhs_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">imd_decile</th>
+<th data-quarto-table-cell-role="th">primary_diagnosis</th>
+<th data-quarto-table-cell-role="th">charlson_index</th>
+<th data-quarto-table-cell-role="th">hba1c</th>
+<th data-quarto-table-cell-role="th">egfr</th>
+<th data-quarto-table-cell-role="th">bmi</th>
+<th data-quarto-table-cell-role="th">los_days</th>
+<th data-quarto-table-cell-role="th">ed_prior_year</th>
+<th data-quarto-table-cell-role="th">discharge_ward</th>
+<th data-quarto-table-cell-role="th">readmitted_30d</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">patient_id</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1001</td>
+<td>69</td>
+<td>M</td>
+<td>8</td>
+<td>E11</td>
+<td>2</td>
+<td>67.6</td>
+<td>29.4</td>
+<td>36.4</td>
+<td>5</td>
+<td>1.0</td>
+<td>Endocrine</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1002</td>
+<td>59</td>
+<td>M</td>
+<td>2</td>
+<td>I10</td>
+<td>4</td>
+<td>67.5</td>
+<td>42.8</td>
+<td>37.8</td>
+<td>4</td>
+<td>2.0</td>
+<td>General Medicine</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1003</td>
+<td>72</td>
+<td>M</td>
+<td>2</td>
+<td>I63</td>
+<td>1</td>
+<td>44.1</td>
+<td>61.7</td>
+<td>26.2</td>
+<td>3</td>
+<td>1.0</td>
+<td>Gastro</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1004</td>
+<td>86</td>
+<td>M</td>
+<td>10</td>
+<td>J18</td>
+<td>1</td>
+<td>55.5</td>
+<td>62.9</td>
+<td>34.0</td>
+<td>2</td>
+<td>1.0</td>
+<td>General Medicine</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1005</td>
+<td>58</td>
+<td>M</td>
+<td>10</td>
+<td>C34</td>
+<td>2</td>
+<td>59.8</td>
+<td>120.0</td>
+<td>18.5</td>
+<td>6</td>
+<td>0.0</td>
+<td>Respiratory</td>
+<td>No</td>
 </tr>
 </tbody>
 </table>
