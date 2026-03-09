@@ -38,10 +38,12 @@ website:
       - section: "**Neural Networks**"
         contents:
           - "pages/301-neural-networks.qmd"
-          - "pages/302-training.qmd"
-          - "pages/303-fitting.qmd"
+          - "pages/302-pytorch.qmd"
+          - "pages/303-training.qmd"
           - "pages/304-evaluation.qmd"
- 
+          - "pages/305-pretrained.qmd"
+          - "pages/306-exercise.qmd"
+
       - text: "---"
       - section: "**Large Language Models**"
         contents:

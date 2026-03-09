@@ -71,6 +71,8 @@ Cross-validation helps us estimate how well our model will generalise to new dat
 
 - Averaging the results to get a more reliable performance estimate.
 
+It ensures the model generalizes well, prevents **overfitting**, and provides a more accurate estimate of performance than a single training-test split.
+
 Here we have a 5-fold cross validation (cv=5 below) and we see 5 different scores for each fold with the average accuracy of around 96%.
 
 

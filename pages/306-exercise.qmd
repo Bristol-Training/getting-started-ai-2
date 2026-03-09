@@ -1,0 +1,72 @@
+---
+title: Exercise
+---
+
+
+### 🐧  Train a Small Neural Network on the Penguins Dataset
+
+**Goal:** Build and train a simple neural network (using PyTorch) to classify penguin species based on their physical measurements. You will then evaluate how well your model performs.
+
+
+#### 1. Data Preparation:
+
+*  Load the dataset (e.g., using `seaborn`)
+*   Drop rows with missing values
+*   Select numerical features such as:
+    *   *bill\_length\_mm*
+    *   *bill\_depth\_mm*
+    *   *flipper\_length\_mm*
+    *   *body\_mass\_g*
+*   Encode categorical variables (e.g. `sex`)
+*   Split into **train** and **test** sets
+
+
+
+#### 2. Build a Small Neural Network (PyTorch)
+
+Create a tiny feed‑forward network, for example:
+
+*   Input: 4 features
+*   Hidden layer: 16 neurons + ReLU
+*   Output: 3 classes (Adelie, Gentoo, Chinstrap)
+
+Example skeleton:
+
+```python
+import torch
+import torch.nn as nn
+
+class PenguinNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.model = nn.Sequential(
+            nn.Linear(4, 16),
+            nn.ReLU(),
+            nn.Linear(16, 3)
+        )
+
+    def forward(self, x):
+        return self.model(x)
+```
+
+
+#### 3. Train the Model
+
+*   Use **CrossEntropyLoss**
+*   Use **Adam optimizer**
+*   Train for 200–300 epochs
+
+Track the loss over time and plot the training loss curve.
+
+
+#### 4. Evaluate the Model
+
+On the **test set**:
+
+*   Compute accuracy
+*   Generate a **confusion matrix** (use `sklearn.metrics.confusion_matrix`)
+*   Interpret the results:
+    *   Which species are easiest to classify?
+    *   Which ones get confused with each other?
+
+

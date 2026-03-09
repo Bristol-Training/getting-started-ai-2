@@ -1,0 +1,24 @@
+---
+title: Pre-Built and Pre-Trained
+---
+
+
+
+We saw above an example of building and training our own neural network.
+
+It's also possible to download a neural network with:
+
+* A **pre-built structure**, allowing us to **train the weights** with our own data.
+* A **pre-built structure**, with **pre-trained weights**, so that we do not need to do any training ourselves.
+* A **pre-built structure**, with **pre-trained weights**, so that we can **fine-tune** the structure and/or weights using our own data.
+
+The approach you should choose depends on how much prior work there has been in the domain you are applying your neural network to, and how much data you have to train your model.
+
+You can often find models designed specifically for a given task, such as classifying an image, identifying certain features in an image, or converting audio to text (transcribing). These models are often shared through websites like [Hugging Face](https://huggingface.co/models) or [Kaggle](https://www.kaggle.com/models), and they have dedicated software libraries to help you use those models.
+
+
+
+
+
+
+
