@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/101-data-preparation.html</loc>
-    <lastmod>2026-03-09T10:28:28.077Z</lastmod>
+    <lastmod>2026-03-09T11:00:35.974Z</lastmod>
   </url>
   <url>
-    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/302-training.html</loc>
-    <lastmod>2026-03-09T10:29:57.330Z</lastmod>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/401-api-llm.html</loc>
+    <lastmod>2026-03-09T10:28:28.086Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/403-api-conclusions.html</loc>
@@ -17,40 +17,52 @@
     <lastmod>2026-03-09T10:28:28.078Z</lastmod>
   </url>
   <url>
-    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/303-evaluation.html</loc>
-    <lastmod>2026-03-09T10:28:28.086Z</lastmod>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/306-exercise.html</loc>
+    <lastmod>2026-03-09T11:37:54.311Z</lastmod>
   </url>
   <url>
-    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/901-summary.html</loc>
-    <lastmod>2026-03-09T10:28:28.088Z</lastmod>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/001-datasets.html</loc>
+    <lastmod>2026-03-09T11:05:37.750Z</lastmod>
   </url>
   <url>
-    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/002-setup.html</loc>
-    <lastmod>2026-03-09T10:28:28.077Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/202-evaluation.html</loc>
-    <lastmod>2026-03-09T10:28:28.079Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Bristol-Training.github.io/getting-started-ai-2/index.html</loc>
-    <lastmod>2026-03-09T10:28:28.076Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/203-tuning.html</loc>
-    <lastmod>2026-03-09T10:28:28.080Z</lastmod>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/304-evaluation.html</loc>
+    <lastmod>2026-03-09T11:24:01.094Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/301-neural-networks.html</loc>
     <lastmod>2026-03-09T10:28:28.080Z</lastmod>
   </url>
   <url>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/203-tuning.html</loc>
+    <lastmod>2026-03-09T11:12:21.374Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/index.html</loc>
+    <lastmod>2026-03-09T10:28:28.076Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/202-evaluation.html</loc>
+    <lastmod>2026-03-09T11:08:05.959Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/002-setup.html</loc>
+    <lastmod>2026-03-09T10:28:28.077Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/305-pretrained.html</loc>
+    <lastmod>2026-03-09T11:27:01.309Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/901-summary.html</loc>
+    <lastmod>2026-03-09T10:28:28.088Z</lastmod>
+  </url>
+  <url>
     <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/201-random-forest.html</loc>
     <lastmod>2026-03-09T10:28:28.079Z</lastmod>
   </url>
   <url>
-    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/001-palmer-penguins.html</loc>
-    <lastmod>2026-03-09T10:28:28.076Z</lastmod>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/302-pytorch.html</loc>
+    <lastmod>2026-03-09T11:16:22.902Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/402-api-example.html</loc>
@@ -61,7 +73,7 @@
     <lastmod>2026-03-09T10:28:28.078Z</lastmod>
   </url>
   <url>
-    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/401-api-llm.html</loc>
-    <lastmod>2026-03-09T10:28:28.086Z</lastmod>
+    <loc>https://Bristol-Training.github.io/getting-started-ai-2/pages/303-training.html</loc>
+    <lastmod>2026-03-09T11:20:11.315Z</lastmod>
   </url>
 </urlset>

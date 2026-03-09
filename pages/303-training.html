@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Preparation – Getting Started with AI (part 2)</title>
+<title>Building a NN with PyTorch – Getting Started with AI (part 2)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,14 +57,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../pages/102-statistics.html" rel="next">
+<link href="../pages/304-evaluation.html" rel="next">
+<link href="../pages/302-pytorch.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -101,9 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -117,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/101-data-preparation.html"><strong>Data Exploration</strong></a></li><li class="breadcrumb-item"><a href="../pages/101-data-preparation.html">Data Preparation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/301-neural-networks.html"><strong>Neural Networks</strong></a></li><li class="breadcrumb-item"><a href="../pages/303-training.html">Building a NN with PyTorch</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/101-data-preparation.html" class="sidebar-item-text sidebar-link active">
+  <a href="../pages/101-data-preparation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Preparation</span></a>
   </div>
 </li>
@@ -249,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/303-training.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/303-training.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Building a NN with PyTorch</span></a>
   </div>
 </li>
@@ -319,9 +317,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/101-data-preparation.html"><strong>Data Exploration</strong></a></li><li class="breadcrumb-item"><a href="../pages/101-data-preparation.html">Data Preparation</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/301-neural-networks.html"><strong>Neural Networks</strong></a></li><li class="breadcrumb-item"><a href="../pages/303-training.html">Building a NN with PyTorch</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Data Preparation</h1>
+<h1 class="title">Building a NN with PyTorch</h1>
 </div>
 
 
@@ -338,185 +336,226 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="environment-setup-loading-data" class="level3">
-<h3 class="anchored" data-anchor-id="environment-setup-loading-data">Environment Setup &amp; Loading Data</h3>
-<p>First, we need to load our toolkit. We will use <strong>Pandas</strong> for data manipulation and <strong>Seaborn/Matplotlib</strong> for visualisation.</p>
-<div id="cell-setup" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># The "Excel" of Python</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns  <span class="co"># For statistical plotting</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt  <span class="co"># The engine behind the plots</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Force all pandas tables to display 2 decimal places</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>pd.options.display.float_format <span class="op">=</span> <span class="st">"</span><span class="sc">{:,.2f}</span><span class="st">"</span>.<span class="bu">format</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set a nice theme for our charts</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset directly from the seaborn package</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first 5 rows to verify it loaded correctly</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>display(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="setup" class="cell-output cell-output-display">
+<section id="training-on-real-data-iris-classification" class="level3">
+<h3 class="anchored" data-anchor-id="training-on-real-data-iris-classification">Training on Real Data: Iris Classification</h3>
+<p>Now let’s train our network on the classic <strong>Iris dataset</strong> (150 samples, 4 features, 3 classes).</p>
+</section>
+<section id="the-training-loop" class="level3">
+<h3 class="anchored" data-anchor-id="the-training-loop">The Training Loop</h3>
+<p>Every training loop follows the same pattern:</p>
+<ol type="1">
+<li><strong>Forward Pass</strong> -&gt; Compute predictions</li>
+<li><strong>Compute Loss</strong> -&gt; Measure how wrong we are (using CrossEntropyLoss for classification)</li>
+<li><strong>Backward Pass</strong> -&gt; Calculate gradients via backpropagation (<code>loss.backward()</code>)</li>
+<li><strong>Update Weights</strong> -&gt; Adjust parameters using the optimizer (<code>optimizer.step()</code>)</li>
+</ol>
+</section>
+<section id="forward-pass" class="level3">
+<h3 class="anchored" data-anchor-id="forward-pass">Forward Pass</h3>
+<p>We have already seen the code for the forward pass above - it is what we use to make predictions.</p>
+<p>It looks like:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> model(inputs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="computing-loss" class="level3">
+<h3 class="anchored" data-anchor-id="computing-loss">Computing loss</h3>
+<p>The loss functions tells us how wrong we are. Since our classification task is a multi-class classification problem, <code>CrossEntropyLoss</code> is a simple and standard choice but <a href="https://docs.pytorch.org/docs/stable/nn.html#loss-functions">many alternatives</a> exist.</p>
+<p>To calculate the loss, we need to initialise our loss function object:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and use it in the training loop:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> criterion(predictions, true_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="backward-pass" class="level3">
+<h3 class="anchored" data-anchor-id="backward-pass">Backward Pass</h3>
+<p>The backward pass is where the “magic” of the neural network happens.</p>
+<p>As you might have noticed above, neural networks have a LOT of parameters. How can we possibly train this? You might be familiar with optimisation algorithms like the simplex method or Newton-Raphson: these work well in theory but become extremely slow when optimising more than a handful of parameters. Neural networks overcome this using <strong>backpropagation</strong>, which is essentially an efficient application of the chain rule from calculus. Because every operation in the network (including non-linear activations like ReLU) has an easily computed derivative, we can calculate how the loss changes with respect to every parameter in the network. This tells us exactly how to adjust each weight and bias to reduce the loss.</p>
+</section>
+<section id="update-weights" class="level3">
+<h3 class="anchored" data-anchor-id="update-weights">Update Weights</h3>
+<p>Once we have the gradients from backpropagation, we need to actually update the weights. This is done by an <strong>optimizer</strong>. The simplest approach is <strong>gradient descent</strong>: move each parameter a small step in the direction that reduces the loss.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The learning rate <code>lr</code> controls how big the step is - too small and training takes forever; too big and you might overshoot the minimum.</p>
+<p>In the training loop we call:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>optimizer.zero_grad()  <span class="co"># Clear gradients from the previous step</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>loss.backward()        <span class="co"># Compute new gradients</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>optimizer.step()       <span class="co"># Update weights using those gradients</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>PyTorch provides many optimizers beyond basic gradient descent. Adam (used above) is a popular choice that adapts the learning rate for each parameter, often converging faster than vanilla gradient descent.</p>
+</section>
+<section id="a-real-example" class="level3">
+<h3 class="anchored" data-anchor-id="a-real-example">A Real Example</h3>
+<div id="45ca3c95" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the Iris dataset from sklearn</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchview <span class="im">import</span> draw_graph</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> iris.data, iris.target</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Split into training and test sets</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to PyTorch tensors</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>X_train_t <span class="op">=</span> torch.tensor(X_train, dtype<span class="op">=</span>torch.float32)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>X_test_t <span class="op">=</span> torch.tensor(X_test, dtype<span class="op">=</span>torch.float32)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>y_train_t <span class="op">=</span> torch.tensor(y_train, dtype<span class="op">=</span>torch.<span class="bu">long</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>y_test_t <span class="op">=</span> torch.tensor(y_test, dtype<span class="op">=</span>torch.<span class="bu">long</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training samples: </span><span class="sc">{</span><span class="bu">len</span>(X_train_t)<span class="sc">}</span><span class="ss">, Test samples: </span><span class="sc">{</span><span class="bu">len</span>(X_test_t)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Features: </span><span class="sc">{</span>X_train_t<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">, Classes: </span><span class="sc">{</span><span class="bu">len</span>(iris.target_names)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Define loss function and optimizer</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()  <span class="co"># For multi-class classification</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.005</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Training loop</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>num_epochs <span class="op">=</span> <span class="dv">250</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>losses <span class="op">=</span> []</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Training..."</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(num_epochs):</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Forward pass: compute predictions</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> model(X_train_t)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute loss</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> criterion(outputs, y_train_t)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    losses.append(loss.item())</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Backward pass: compute gradients</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    optimizer.zero_grad()  <span class="co"># Clear previous gradients</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    loss.backward()  <span class="co"># Compute gradients via backpropagation</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update weights using the optimizer</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    optimizer.step()</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print progress every 20 epochs</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (epoch <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="dv">20</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Epoch [</span><span class="sc">{</span>epoch <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>num_epochs<span class="sc">}</span><span class="ss">], Loss: </span><span class="sc">{</span>loss<span class="sc">.</span>item()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>model_graph <span class="op">=</span> draw_graph(model, input_size<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">4</span>))  <span class="co"># (batch_size, input_size)</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>model_graph.visual_graph</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training samples: 120, Test samples: 30
+Features: 4, Classes: 3
+
+Training...
+Epoch [20/250], Loss: 0.7853
+Epoch [40/250], Loss: 0.4201
+Epoch [60/250], Loss: 0.2134
+Epoch [80/250], Loss: 0.0875
+Epoch [100/250], Loss: 0.0613
+Epoch [120/250], Loss: 0.0553
+Epoch [140/250], Loss: 0.0526
+Epoch [160/250], Loss: 0.0507
+Epoch [180/250], Loss: 0.0491
+Epoch [200/250], Loss: 0.0477
+Epoch [220/250], Loss: 0.0465
+Epoch [240/250], Loss: 0.0455</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">species</th>
-<th data-quarto-table-cell-role="th">island</th>
-<th data-quarto-table-cell-role="th">bill_length_mm</th>
-<th data-quarto-table-cell-role="th">bill_depth_mm</th>
-<th data-quarto-table-cell-role="th">flipper_length_mm</th>
-<th data-quarto-table-cell-role="th">body_mass_g</th>
-<th data-quarto-table-cell-role="th">sex</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Adelie</td>
-<td>Torgersen</td>
-<td>39.10</td>
-<td>18.70</td>
-<td>181.00</td>
-<td>3,750.00</td>
-<td>Male</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>Adelie</td>
-<td>Torgersen</td>
-<td>39.50</td>
-<td>17.40</td>
-<td>186.00</td>
-<td>3,800.00</td>
-<td>Female</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Adelie</td>
-<td>Torgersen</td>
-<td>40.30</td>
-<td>18.00</td>
-<td>195.00</td>
-<td>3,250.00</td>
-<td>Female</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Adelie</td>
-<td>Torgersen</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Adelie</td>
-<td>Torgersen</td>
-<td>36.70</td>
-<td>19.30</td>
-<td>193.00</td>
-<td>3,450.00</td>
-<td>Female</td>
-</tr>
-</tbody>
-</table>
-
+<figure class="figure">
+<p><img src="303-training_files/figure-html/cell-3-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We have now trained our neural network!</p>
+<p>Now that the model has been trained, the weights and biases have changed. Compare the image above to the original, untrained model.</p>
+</section>
+<section id="monitoring-training" class="level3">
+<h3 class="anchored" data-anchor-id="monitoring-training">Monitoring training</h3>
+<p>During training, we expect our loss to decrease as the model makes better and better predictions. You might have noticed above that the neural network “sees” the entire dataset multiple times - each of these is known as an “epoch”. We can plot the loss against epoch number to see how the model improves:</p>
+<div id="5711a2b3" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the training loss</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.plot(losses)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Epoch"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Training Loss Over Time"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="303-training_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
 </div>
 </section>
-<section id="data-cleaning" class="level3">
-<h3 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h3>
-<p>Real-world data is rarely perfect. Before we can analyse the penguins, we need to check for missing values (NaNs).</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create a clean summary of missing values</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>missing_summary <span class="op">=</span> df.isnull().<span class="bu">sum</span>().to_frame(name<span class="op">=</span><span class="st">"Missing Values"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>display(missing_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="tbl-missing-data" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-missing-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Summary of Missing Values
-</figcaption>
-<div aria-describedby="tbl-missing-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<section id="evaluating-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="evaluating-the-model">Evaluating the Model</h3>
+<p>It is good that our neural network has learned from the training data, but this is no guarantee that it would work on real data.</p>
+<p>To check it works we will evaluate it on our holdout testing subset of the data. This is data for which we know the ground truth, but that the model hasn’t been trained on. We will plot a “confusion matrix” that compares the neural network’s predictions to the real labels.</p>
+<p>Note that this still isn’t a guarantee that the model will work when given some real data - e.g.&nbsp;the real data might have a different distribution, which is also something you might need to monitor!</p>
+<div id="39749444" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate on test set</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()  <span class="co"># Set model to evaluation mode</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():  <span class="co"># Disable gradient computation for inference</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    test_outputs <span class="op">=</span> model(X_test_t)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> test_outputs.argmax(dim<span class="op">=</span><span class="dv">1</span>).numpy()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate accuracy</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> (predictions <span class="op">==</span> y_test).mean()</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Test Accuracy: </span><span class="sc">{</span>accuracy<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion Matrix</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, predictions)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>iris.target_names)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>disp.plot(ax<span class="op">=</span>plt.gca(), cmap<span class="op">=</span><span class="st">"Blues"</span>, colorbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Confusion Matrix"</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Test Accuracy: 100.00%</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
-
-
-<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Missing Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">species</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">island</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">bill_length_mm</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">bill_depth_mm</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">flipper_length_mm</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">body_mass_g</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">sex</td>
-<td>11</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
+<figure class="figure">
+<p><img src="303-training_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
-<p>Since we have enough data, we will drop the rows with missing values to ensure our later analysis is accurate.</p>
-<div id="data-cleaning" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a clean dataframe by dropping rows with any missing values</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df.dropna()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate how many rows were dropped</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>rows_removed <span class="op">=</span> <span class="bu">len</span>(df) <span class="op">-</span> <span class="bu">len</span>(df_clean)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">30</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CLEANING REPORT"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Original records: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Records kept:     </span><span class="sc">{</span><span class="bu">len</span>(df_clean)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Records removed:  </span><span class="sc">{</span>rows_removed<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>------------------------------
-CLEANING REPORT
-• Original records: 344
-• Records kept:     333
-• Records removed:  11
-------------------------------</code></pre>
 </div>
-</div>
+<p>We can see that the model is successful in predicting the correct class most (or all) of the time.</p>
+</section>
+<section id="visualising-decision-boundaries" class="level3">
+<h3 class="anchored" data-anchor-id="visualising-decision-boundaries">Visualising Decision Boundaries</h3>
+<p>A <strong>decision boundary</strong> is the region in feature space where the model switches from predicting one class to another. Visualising these boundaries helps us understand:</p>
+<ul>
+<li><strong>How the model “thinks”</strong>: Where does it draw the line between classes?</li>
+<li><strong>Model complexity</strong>: Simple models have straight boundaries; neural networks can learn curved, complex shapes</li>
+<li><strong>Potential overfitting</strong>: Very wiggly boundaries might indicate the model is memorising noise rather than learning patterns</li>
+</ul>
+<p>Since our Iris dataset has 4 features, we can’t visualise all dimensions at once. Instead, we’ll look at different 2D “slices” by plotting pairs of features and showing the decision boundaries for each combination.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plotting.plot_decision_boundaries(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    model,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    X,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    y,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    feature_names<span class="op">=</span>iris.feature_names,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    class_names<span class="op">=</span>iris.target_names,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="using-pre-built-and-pre-trained-models" class="level3">
+<h3 class="anchored" data-anchor-id="using-pre-built-and-pre-trained-models">Using pre-built and pre-trained models</h3>
+<p>We saw above an example of building and training our own neural network.</p>
+<p>It’s also possible to download a neural network with:</p>
+<ul>
+<li>A <strong>pre-built structure</strong>, allowing us to <strong>train the weights</strong> with our own data.</li>
+<li>A <strong>pre-built structure</strong>, with <strong>pre-trained weights</strong>, so that we do not need to do any training ourselves.</li>
+<li>A <strong>pre-built structure</strong>, with <strong>pre-trained weights</strong>, so that we can <strong>fine-tune</strong> the structure and/or weights using our own data.</li>
+</ul>
+<p>The approach you should choose depends on how much prior work there has been in the domain you are applying your neural network to, and how much data you have to train your model.</p>
+<p>You can often find models designed specifically for a given task, such as classifying an image, identifying certain features in an image, or converting audio to text (transcribing). These models are often shared through websites like <a href="https://huggingface.co/models">Hugging Face</a> or <a href="https://www.kaggle.com/models">Kaggle</a>, and they have dedicated software libraries to help you use those models.</p>
 
 
 </section>
@@ -944,10 +983,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../pages/302-pytorch.html" class="pagination-link" aria-label="NN with PyTorch">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">NN with PyTorch</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../pages/102-statistics.html" class="pagination-link" aria-label="Descriptive Statistics">
-        <span class="nav-page-text">Descriptive Statistics</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/304-evaluation.html" class="pagination-link" aria-label="Evaluation">
+        <span class="nav-page-text">Evaluation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

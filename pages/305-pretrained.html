@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Summary – Getting Started with AI (part 2)</title>
+<title>Pre-Built and Pre-Trained – Getting Started with AI (part 2)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../pages/306-exercise.html" rel="next">
+<link href="../pages/304-evaluation.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -79,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/901-summary.html">Summary</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/301-neural-networks.html"><strong>Neural Networks</strong></a></li><li class="breadcrumb-item"><a href="../pages/305-pretrained.html">Pre-Built and Pre-Trained</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -223,7 +225,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/305-pretrained.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/305-pretrained.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Pre-Built and Pre-Trained</span></a>
   </div>
 </li>
@@ -268,7 +270,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/901-summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="../pages/901-summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Summary</span></a>
   </div>
 </li>
@@ -281,9 +283,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/301-neural-networks.html"><strong>Neural Networks</strong></a></li><li class="breadcrumb-item"><a href="../pages/305-pretrained.html">Pre-Built and Pre-Trained</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Summary</h1>
+<h1 class="title">Pre-Built and Pre-Trained</h1>
 </div>
 
 
@@ -300,6 +302,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>We saw above an example of building and training our own neural network.</p>
+<p>It’s also possible to download a neural network with:</p>
+<ul>
+<li>A <strong>pre-built structure</strong>, allowing us to <strong>train the weights</strong> with our own data.</li>
+<li>A <strong>pre-built structure</strong>, with <strong>pre-trained weights</strong>, so that we do not need to do any training ourselves.</li>
+<li>A <strong>pre-built structure</strong>, with <strong>pre-trained weights</strong>, so that we can <strong>fine-tune</strong> the structure and/or weights using our own data.</li>
+</ul>
+<p>The approach you should choose depends on how much prior work there has been in the domain you are applying your neural network to, and how much data you have to train your model.</p>
+<p>You can often find models designed specifically for a given task, such as classifying an image, identifying certain features in an image, or converting audio to text (transcribing). These models are often shared through websites like <a href="https://huggingface.co/models">Hugging Face</a> or <a href="https://www.kaggle.com/models">Kaggle</a>, and they have dedicated software libraries to help you use those models.</p>
 
 
 
@@ -724,6 +735,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../pages/304-evaluation.html" class="pagination-link" aria-label="Evaluation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Evaluation</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../pages/306-exercise.html" class="pagination-link" aria-label="Exercise">
+        <span class="nav-page-text">Exercise</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

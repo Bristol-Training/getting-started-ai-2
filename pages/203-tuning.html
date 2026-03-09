@@ -151,8 +151,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/001-palmer-penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Palmer Penguins Dataset</span></a>
+  <a href="../pages/001-datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -240,14 +240,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/302-training.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/302-pytorch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">NN with PyTorch</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/303-evaluation.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/303-training.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Building a NN with PyTorch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/304-evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Evaluation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/305-pretrained.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pre-Built and Pre-Trained</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/306-exercise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise</span></a>
   </div>
 </li>
       </ul>
@@ -325,8 +343,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Training and testing/validating the model on different combinations of these folds.</p></li>
 <li><p>Averaging the results to get a more reliable performance estimate.</p></li>
 </ul>
+<p>It ensures the model generalizes well, prevents <strong>overfitting</strong>, and provides a more accurate estimate of performance than a single training-test split.</p>
 <p>Here we have a 5-fold cross validation (cv=5 below) and we see 5 different scores for each fold with the average accuracy of around 96%.</p>
-<div id="d546c7e5" class="cell" data-execution_count="2">
+<div id="fffbfd4a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cv_scores <span class="op">=</span> cross_val_score(RandomForestClassifier(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    n_estimators<span class="op">=</span><span class="dv">300</span>,        <span class="co"># number of trees — more is generally better (diminishing returns)</span></span>
@@ -357,7 +376,7 @@ Mean CV accuracy: 0.9588 ± 0.0299</code></pre>
 <li><p><code>min_samples_leaf</code>: The higher it is the smoother and more regularised the results are likely to be. Lower values can lead to overfitting.</p></li>
 </ul>
 <p>We can use a grid search to establish the optimal hyper-parameters for the Random Forest:</p>
-<div id="5021f73e" class="cell" data-execution_count="3">
+<div id="2cbfcc96" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
