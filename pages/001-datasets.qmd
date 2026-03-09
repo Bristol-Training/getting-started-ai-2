@@ -117,8 +117,12 @@ nhs_data = pd.read_csv(
 
 print("Missing values per column:")
 print(nhs_data.isnull().sum())
-
-nhs_data = nhs_data.dropna()
-nhs_data.head()
 ```
 
+```{python}
+# delete rows with missing values
+nhs_data = nhs_data.dropna()
+
+# print first rows 
+nhs_data.head()
+```
