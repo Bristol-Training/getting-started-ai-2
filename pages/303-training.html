@@ -388,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a-real-example" class="level3">
 <h3 class="anchored" data-anchor-id="a-real-example">A Real Example</h3>
-<div id="8df3a60f" class="cell" data-execution_count="2">
+<div id="39ac1945" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the Iris dataset from sklearn</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -451,18 +451,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Features: 4, Classes: 3
 
 Training...
-Epoch [20/250], Loss: 1.0154
-Epoch [40/250], Loss: 0.6888
-Epoch [60/250], Loss: 0.3630
-Epoch [80/250], Loss: 0.1325
-Epoch [100/250], Loss: 0.0712
-Epoch [120/250], Loss: 0.0602
-Epoch [140/250], Loss: 0.0563
-Epoch [160/250], Loss: 0.0539
-Epoch [180/250], Loss: 0.0520
-Epoch [200/250], Loss: 0.0505
-Epoch [220/250], Loss: 0.0492
-Epoch [240/250], Loss: 0.0480</code></pre>
+Epoch [20/250], Loss: 1.0089
+Epoch [40/250], Loss: 0.6617
+Epoch [60/250], Loss: 0.2477
+Epoch [80/250], Loss: 0.0947
+Epoch [100/250], Loss: 0.0661
+Epoch [120/250], Loss: 0.0582
+Epoch [140/250], Loss: 0.0547
+Epoch [160/250], Loss: 0.0525
+Epoch [180/250], Loss: 0.0517
+Epoch [200/250], Loss: 0.0495
+Epoch [220/250], Loss: 0.0484
+Epoch [240/250], Loss: 0.0474</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -478,7 +478,7 @@ Epoch [240/250], Loss: 0.0480</code></pre>
 <section id="monitoring-training" class="level3">
 <h3 class="anchored" data-anchor-id="monitoring-training">Monitoring training</h3>
 <p>During training, we expect our loss to decrease as the model makes better and better predictions. You might have noticed above that the neural network “sees” the entire dataset multiple times - each of these is known as an “epoch”. We can plot the loss against epoch number to see how the model improves:</p>
-<div id="c49f595a" class="cell" data-execution_count="3">
+<div id="4fa41d13" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the training loss</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
@@ -495,73 +495,6 @@ Epoch [240/250], Loss: 0.0480</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="evaluating-the-model" class="level3">
-<h3 class="anchored" data-anchor-id="evaluating-the-model">Evaluating the Model</h3>
-<p>It is good that our neural network has learned from the training data, but this is no guarantee that it would work on real data.</p>
-<p>To check it works we will evaluate it on our holdout testing subset of the data. This is data for which we know the ground truth, but that the model hasn’t been trained on. We will plot a “confusion matrix” that compares the neural network’s predictions to the real labels.</p>
-<p>Note that this still isn’t a guarantee that the model will work when given some real data - e.g.&nbsp;the real data might have a different distribution, which is also something you might need to monitor!</p>
-<div id="2f623dfb" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate on test set</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()  <span class="co"># Set model to evaluation mode</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():  <span class="co"># Disable gradient computation for inference</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    test_outputs <span class="op">=</span> model(X_test_t)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> test_outputs.argmax(dim<span class="op">=</span><span class="dv">1</span>).numpy()</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate accuracy</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> (predictions <span class="op">==</span> y_test).mean()</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Test Accuracy: </span><span class="sc">{</span>accuracy<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion Matrix</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, predictions)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>iris.target_names)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>disp.plot(ax<span class="op">=</span>plt.gca(), cmap<span class="op">=</span><span class="st">"Blues"</span>, colorbar<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Confusion Matrix"</span>)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Test Accuracy: 100.00%</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="303-training_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can see that the model is successful in predicting the correct class most (or all) of the time.</p>
-</section>
-<section id="visualising-decision-boundaries" class="level3">
-<h3 class="anchored" data-anchor-id="visualising-decision-boundaries">Visualising Decision Boundaries</h3>
-<p>A <strong>decision boundary</strong> is the region in feature space where the model switches from predicting one class to another. Visualising these boundaries helps us understand:</p>
-<ul>
-<li><strong>How the model “thinks”</strong>: Where does it draw the line between classes?</li>
-<li><strong>Model complexity</strong>: Simple models have straight boundaries; neural networks can learn curved, complex shapes</li>
-<li><strong>Potential overfitting</strong>: Very wiggly boundaries might indicate the model is memorising noise rather than learning patterns</li>
-</ul>
-<p>Since our Iris dataset has 4 features, we can’t visualise all dimensions at once. Instead, we’ll look at different 2D “slices” by plotting pairs of features and showing the decision boundaries for each combination.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plotting.plot_decision_boundaries(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    model,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    X,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    y,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    feature_names<span class="op">=</span>iris.feature_names,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    class_names<span class="op">=</span>iris.target_names,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-<section id="using-pre-built-and-pre-trained-models" class="level3">
-<h3 class="anchored" data-anchor-id="using-pre-built-and-pre-trained-models">Using pre-built and pre-trained models</h3>
-<p>We saw above an example of building and training our own neural network.</p>
-<p>It’s also possible to download a neural network with:</p>
-<ul>
-<li>A <strong>pre-built structure</strong>, allowing us to <strong>train the weights</strong> with our own data.</li>
-<li>A <strong>pre-built structure</strong>, with <strong>pre-trained weights</strong>, so that we do not need to do any training ourselves.</li>
-<li>A <strong>pre-built structure</strong>, with <strong>pre-trained weights</strong>, so that we can <strong>fine-tune</strong> the structure and/or weights using our own data.</li>
-</ul>
-<p>The approach you should choose depends on how much prior work there has been in the domain you are applying your neural network to, and how much data you have to train your model.</p>
-<p>You can often find models designed specifically for a given task, such as classifying an image, identifying certain features in an image, or converting audio to text (transcribing). These models are often shared through websites like <a href="https://huggingface.co/models">Hugging Face</a> or <a href="https://www.kaggle.com/models">Kaggle</a>, and they have dedicated software libraries to help you use those models.</p>
 
 
 </section>

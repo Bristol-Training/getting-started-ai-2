@@ -342,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="../assets/iris.png" class="img-fluid" style="width:70.0%"></p>
 <p>The Iris dataset, introduced by British statistician and biologist Ronald A. Fisher in 1936, is one of the most iconic datasets in the history of machine learning and statistics. It contains measurements of 150 iris flowers, evenly split across three species — Iris setosa, Iris versicolor, and Iris virginica — with each flower described by four features: sepal length, sepal width, petal length, and petal width, all measured in centimetres. Its appeal lies in its simplicity and structure: one class (setosa) is linearly separable from the other two, while the remaining pair overlaps slightly, making it an ideal sandbox for exploring both simple and more nuanced classification algorithms.</p>
 <p>We can load the dataset directly from the Python <code>pandas</code> library.</p>
-<div id="a462d40f" class="cell" data-execution_count="1">
+<div id="902922fd" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -353,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">"target"</span>])</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
 
@@ -492,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p><br></p>
 <p>We can load the dataset directly from the Python <code>seaborn</code> library.</p>
-<div id="40b787c9" class="cell" data-execution_count="2">
+<div id="6791edb6" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -501,7 +501,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first few rows</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -666,7 +666,7 @@ Column descriptions
 </div>
 </div>
 </div>
-<div id="84dd938b" class="cell" data-execution_count="3">
+<div id="0855eb59" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/Bristol-Training/nhs-data-science/refs/heads/main/data/nhs_readmission.csv"</span></span>
@@ -697,13 +697,13 @@ readmitted_30d         0
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="68805c86" class="cell" data-execution_count="4">
+<div id="d84b8af4" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># delete rows with missing values</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>nhs_data <span class="op">=</span> nhs_data.dropna()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print first rows </span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>nhs_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -822,6 +822,11 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="other-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="other-datasets">Other datasets</h3>
+<p><code>scikit-learn</code> example datasets <a href="https://scikit-learn.org/stable/datasets.html" class="uri">https://scikit-learn.org/stable/datasets.html</a></p>
+<p>Kaggle open datasets <a href="https://www.kaggle.com/datasets" class="uri">https://www.kaggle.com/datasets</a></p>
 
 
 </section>
