@@ -44,7 +44,7 @@ The "learning" happens when we adjust those weights and biases so the network's 
 
 The neural network is made up of several of these neurons each of which are connected to all the others in the neighbouring layers (hence, neural **network**).
 
-
+![Fragment of Ramón y Cajal’s first publication on the central nervous system, from *Sotelo, C. Viewing the brain through the master hand of Ramon y Cajal. Nat Rev Neurosci 4, 71–77 (2003)* <https://doi.org/10.1038/nrn1010>](../assets/RyC-neurons.png){width="60%"}
 
 ### Three Ways to Work with Neural Networks
 
