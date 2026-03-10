@@ -28,9 +28,23 @@ print(f"GPU available: {torch.cuda.is_available()}")
 In PyTorch, we define a neural network as a Python class. Here's a simple one with:
 
 - An **input layer** (takes our data)
+```
+    nn.Linear(4, 8)
+```
 - A **hidden layer** (where the features and rules get chosen)
+```
+    nn.ReLU()
+    nn.Linear(8, 12)
+    nn.ReLU()
+    nn.Linear(12, 8)
+    nn.ReLU()
+```
 - An **output layer** (gives us predictions)
+```
+    nn.Linear(8, 3)
+```
 
+<br>
 
 ```{python}
 from torch import nn

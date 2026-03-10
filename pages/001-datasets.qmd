@@ -126,3 +126,13 @@ nhs_data = nhs_data.dropna()
 # print first rows 
 nhs_data.head()
 ```
+
+
+### Other datasets
+
+`scikit-learn` example datasets <https://scikit-learn.org/stable/datasets.html>
+
+Kaggle open datasets <https://www.kaggle.com/datasets>
+
+
+
