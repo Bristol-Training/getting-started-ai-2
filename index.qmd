@@ -2,6 +2,11 @@
 title: "Introduction"
 ---
 
+:::{.callout-note appearance="minimal"}
+
+![This work was supported by the Engineering and Physical Sciences Research Council, EP/Z534936/1.](assets/UKRI_EPSR_Council-Logo_Horiz-RGB.png){width=50%}
+:::
+
 Welcome to *Getting Started with AI (part 2)* — a practical, hands-on continuation of our introductory AI course. In this session we move beyond the core ideas covered in part 1 and focus on **applying** machine-learning and AI techniques. We will work through several widely used methods — from **exploratory data analysis (EDA)** to **random forests** and **neural networks** — and conclude by showing how modern LLMs can be integrated into applications and analysis pipelines.
 
 No prior programming experience is required. By the end of the session, you will have gained hands-on intuition for *how* these tools behave in practice and the practical steps involved in building and using AI systems.
